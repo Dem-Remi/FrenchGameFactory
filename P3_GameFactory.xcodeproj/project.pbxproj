@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		600D8DF5262D904B007C37AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600D8DF4262D904B007C37AD /* main.swift */; };
+		601E58BB262EC6FA008721DD /* weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E58BA262EC6FA008721DD /* weapon.swift */; };
+		606710152631BB0A004B458A /* chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606710142631BB0A004B458A /* chest.swift */; };
+		60FBD25E262DA7C200A72FFC /* character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FBD25D262DA7C200A72FFC /* character.swift */; };
+		60FBD262262DB87B00A72FFC /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FBD261262DB87B00A72FFC /* player.swift */; };
+		60FBD268262DBDC700A72FFC /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FBD267262DBDC700A72FFC /* Warrior.swift */; };
+		60FBD26C262DBFBE00A72FFC /* Archer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FBD26B262DBFBE00A72FFC /* Archer.swift */; };
+		60FBD26F262DC02800A72FFC /* Wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FBD26E262DC02800A72FFC /* Wizard.swift */; };
+		60FBD272262DC0DB00A72FFC /* Giant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FBD271262DC0DB00A72FFC /* Giant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +33,14 @@
 /* Begin PBXFileReference section */
 		600D8DF1262D904B007C37AD /* P3_GameFactory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = P3_GameFactory; sourceTree = BUILT_PRODUCTS_DIR; };
 		600D8DF4262D904B007C37AD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		601E58BA262EC6FA008721DD /* weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weapon.swift; sourceTree = "<group>"; };
+		606710142631BB0A004B458A /* chest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chest.swift; sourceTree = "<group>"; };
+		60FBD25D262DA7C200A72FFC /* character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = character.swift; sourceTree = "<group>"; };
+		60FBD261262DB87B00A72FFC /* player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
+		60FBD267262DBDC700A72FFC /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
+		60FBD26B262DBFBE00A72FFC /* Archer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archer.swift; sourceTree = "<group>"; };
+		60FBD26E262DC02800A72FFC /* Wizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wizard.swift; sourceTree = "<group>"; };
+		60FBD271262DC0DB00A72FFC /* Giant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Giant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +74,24 @@
 			isa = PBXGroup;
 			children = (
 				600D8DF4262D904B007C37AD /* main.swift */,
+				60FBD261262DB87B00A72FFC /* player.swift */,
+				60FBD25D262DA7C200A72FFC /* character.swift */,
+				601E58BA262EC6FA008721DD /* weapon.swift */,
+				606710142631BB0A004B458A /* chest.swift */,
+				60FBD266262DBDB300A72FFC /* Characters */,
 			);
 			path = P3_GameFactory;
+			sourceTree = "<group>";
+		};
+		60FBD266262DBDB300A72FFC /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				60FBD267262DBDC700A72FFC /* Warrior.swift */,
+				60FBD26B262DBFBE00A72FFC /* Archer.swift */,
+				60FBD26E262DC02800A72FFC /* Wizard.swift */,
+				60FBD271262DC0DB00A72FFC /* Giant.swift */,
+			);
+			path = Characters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +151,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60FBD25E262DA7C200A72FFC /* character.swift in Sources */,
+				601E58BB262EC6FA008721DD /* weapon.swift in Sources */,
+				60FBD272262DC0DB00A72FFC /* Giant.swift in Sources */,
+				60FBD262262DB87B00A72FFC /* player.swift in Sources */,
+				60FBD268262DBDC700A72FFC /* Warrior.swift in Sources */,
+				606710152631BB0A004B458A /* chest.swift in Sources */,
 				600D8DF5262D904B007C37AD /* main.swift in Sources */,
+				60FBD26F262DC02800A72FFC /* Wizard.swift in Sources */,
+				60FBD26C262DBFBE00A72FFC /* Archer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
