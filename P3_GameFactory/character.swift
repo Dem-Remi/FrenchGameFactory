@@ -42,9 +42,9 @@ class Character {
     func giveDamage(target: Character) {
         target.life -= self.weapon.damage
         if target.life <= 0 {
-            print("\n☠️ Your character is dead.")
+            print("\n☠️ His character is dead.")
         } else {
-            print("\nAfter that, the character's life is: \(target.life) points.")
+            print("\nAfter that, his character's life points is: \(target.life).")
         }
     }
     
@@ -52,9 +52,7 @@ class Character {
     func giveRepair(target: Character) {
         target.life += self.weapon.repair
         if target.life <= 0 {
-            print("\n☠️ Your character is dead.")
-        } else {
-            print("\nAfter that, the character's life is: \(target.life) points.")
+            print("\nAfter that, his character's life points is: \(target.life).")
         }
     }
 }

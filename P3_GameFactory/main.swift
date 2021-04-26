@@ -36,7 +36,7 @@ game.startMenu()
 class Game {
     var player1: Player
     var player2: Player
-    var numberOfRounds: Int = 0
+    var numberOfRounds: Int = 0 // The round number is initialized to 0 for the beginning.
     
     init (player1: Player, player2: Player) {
         self.player1 = player1
@@ -47,6 +47,32 @@ class Game {
     func startMenu() {
         introduction()
         confirmation()
+    }
+    
+    // Introduction before the game.
+    func introduction() {
+        print("Hi guys! The French Factory Game is very happy to welcome you in THE game of the year")
+    }
+    
+    // A confirmation by player is requested to start game.
+    func confirmation() {
+        var confirm = true
+        repeat {
+            print("Would like to play?" //ask to the player if he want to play
+                    + "\nYes or Not [y/n]") // an answer is required
+            if let playerChoice = readLine() {  // We get the user's response
+                switch playerChoice { // Enumeration with 2 cases : Yes or Not about start game
+                case "y": //Want to play
+                    print("Let's go!")
+                    self.startGame()
+                case "n": //Don't want to play
+                    print("See you next time!\n")
+                    confirm = false // Exit program
+                default: //Answer is not y or n
+                    print("I don't undersant your answer. Please try again.")
+                }
+            }
+        } while confirm
     }
     
     // The players are ready, the game can start.
@@ -62,57 +88,35 @@ class Game {
         // The fight starts. The players attack each other in turn until there is only one team left with one or more players.
         repeat {
             fight(attackingPlayer: player1, defendingPlayer: player2)
-            if player2.team.count > 0 {
+            if player2.isAlive() {
+                // if player2.team.count > 0 {
                 fight(attackingPlayer: player2, defendingPlayer: player1)
             }
             numberOfRounds += 1
-        } while player1.team.count > 0 && player2.team.count > 0
+        } while player1.isAlive() && player2.isAlive()
+        // } while player1.alivedTeam.count > 0 && player2.alivedTeam.count > 0
+        // } while player1.team.count > 0 && player2.team.count > 0
         endGame()
     }
     
     // The name of the winner is announced as well as the number of turns and the list of characters with their properties (life point, etc.).
     func endGame() {
-        if player1.team.count <= 0 {
-            print("\n🏆 And the winner iiiissssss \(player2.playerName) in \(numberOfRounds) rounds! 🏆"
+        if player1.team.count <= 0 { // if player 1 has a number of characters less than or equal to 0
+            print("\n🏆 And the winner is \(player2.playerName) in \(numberOfRounds) rounds! 🏆" // player 2 won the game
                     + "\nThe survivor(s) of your team are:")
-            for i in 0..<player2.team.count {
-                print("\(i).", player2.team[i].name, "-", player2.team[i].type, "-", player2.team[i].life, "life points", "-", player2.team[i].weapon.name)
+            for i in 0..<player2.team.count { // we count the number of characters remaining
+                print("\(i).", player2.team[i].name, "-", "-", player2.team[i].life, "life points", "-", player2.team[i].weapon.name) // we list the remaining characters
             }
-        } else if player2.team.count <= 0 {
-            print("\nAnd the winner is \(player1.playerName) in \(numberOfRounds) rounds!"
+        } else if player2.team.count <= 0 { // if player 2 has a number of characters less than or equal to 0
+            print("\n🏆 And the winner is \(player1.playerName) in \(numberOfRounds) rounds! 🏆" // player 1 won the game
                     + "\nThe survivor(s) of your team are:")
-            for i in 0..<player1.team.count {
-                print("\(i).", player1.team[i].name, "-", player1.team[i].type, "-", player1.team[i].life, "life points", "-", player1.team[i].weapon.name)
+            for i in 0..<player1.team.count { // we count the number of characters remaining
+                print("\(i).", player1.team[i].name, "-", "-", player1.team[i].life, "life points", "-", player1.team[i].weapon.name) // we list the remaining characters
             }
         }
     }
     
-    // Introduction before the game.
-    func introduction() {
-        print("Hi guys! The French Factory Game is very happy to welcome you in THE game of the year")
-    }
     
-    // A confirmation by player is requested to start game.
-    func confirmation() {
-        var confirm = true
-        repeat {
-            print("Would like to play?" //ask to the player if he want to play
-                    + "\nYes or Not [y/n]") // an answer is required
-            if let playerChoice = readLine() {  // We get the user's response
-                switch playerChoice {
-                case "y": //Want to play
-                    print("Let's go!")
-                    self.startGame()
-                case "n": //Don't want to play
-                    print("See you next time!\n")
-                    confirm = false
-                default: //Answer is not y or n
-                    print("I don't undersant your answer. Please try again.")
-                }
-            }
-        } while confirm
-        exit(0)
-    }
     
     //======================
     // MARK: - Fight
@@ -120,24 +124,18 @@ class Game {
     
     // This is the fight phase. There are an attacker and a defender.
     func fight(attackingPlayer: Player, defendingPlayer: Player) {
-        print("\n\(attackingPlayer.playerName), choose a character for play:")
-        let attacker = attackingPlayer.selectCharacter(in: attackingPlayer.team)
-        let attack = attackingPlayer.wantToAttack()
+        print("\n\(attackingPlayer.playerName), choose a character for play:") // Player1 chooses his attack character
+        let attacker = attackingPlayer.selectCharacter() // Constant attacker who comes looking in the character table
+        let attack = attackingPlayer.attackOrRepair()
         if attack {
-            let defenser = attackingPlayer.selectCharacter(in: defendingPlayer.team)
+            let defenser = defendingPlayer.selectCharacter()
             attacker.giveDamage(target: defenser)
-            if defenser.life <= 0 {
-                let index = defendingPlayer.team.firstIndex(where: {$0 === defenser})
-                defendingPlayer.team.remove(at: index!)
-            }
         }
         else {
-            let target = attackingPlayer.selectCharacter(in: attackingPlayer.team)
+            let target = attackingPlayer.selectCharacter()
             attacker.giveRepair(target: target)
         }
     }
-    
-    
     
     // Reset informations before new game.
     func reset() {
