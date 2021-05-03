@@ -10,6 +10,7 @@ enum Type {
 
 // Create a class Character.
 class Character {
+    
     var name: String        // The character has a name.
     var life: Int           // The character has life points.
     var weapon: Weapon      // The character has a weapon.
@@ -42,7 +43,8 @@ class Character {
     func giveDamage(target: Character) {
         target.life -= self.weapon.damage
         if target.life <= 0 {
-            print("\n☠️ His character is dead.")
+            print("\n👍🏻 Well done!"
+                    + "\n☠️ His character is dead.")
         } else {
             print("\nAfter that, his character's life points is: \(target.life).")
         }
@@ -51,9 +53,8 @@ class Character {
     // Or heal someone on his team.
     func giveRepair(target: Character) {
         target.life += self.weapon.repair
-        if target.life <= 0 {
+        if target.life >= 0 {
             print("\nAfter that, his character's life points is: \(target.life).")
         }
     }
 }
-

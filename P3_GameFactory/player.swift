@@ -40,11 +40,11 @@ class Player {
     func createTeam() {
         repeat {
             print("\n\(playerName), choose your character n°\(team.count + 1):"
-                    + "\n0. ⚔️ A warrior, with 20LP, 5D & 3R."
-                    + "\n1. 🏹 An archer, with 15LP, 7D & 2R."
-                    + "\n2. 🧙🏻‍♂️ A wizard, with 10LP, 8D & 5R."
-                    + "\n3. 🥊 A giant, with 17LP, 9D & 0R."
-                    + "\nInfo: LP for LivePoint, D for Damage & R for Repair")
+                    + "\n0. 🗡 A warrior, with \(Warrior.defaultLife)LP, \(Warrior.defaultDamage)D & \(Warrior.defaultRepair)R."
+                    + "\n1. 🏹 An archer, with \(Archer.defaultLife)LP, \(Archer.defaultDamage)D & \(Archer.defaultRepair)R."
+                    + "\n2. 🧙🏻‍♂️ A wizard, with \(Wizard.defaultLife)LP, \(Wizard.defaultDamage)D & \(Wizard.defaultRepair)R."
+                    + "\n3. 🥊 A giant, with \(Giant.defaultLife)LP, \(Giant.defaultDamage)D & \(Giant.defaultRepair)R."
+                    + "\nInfo: LP LifePoint, D for Damage & R for Repair")
             if let choice = readLine() {
                 switch choice {
                 case "0":
@@ -81,7 +81,7 @@ class Player {
             if character.life > 0 {
                 print("\(i).", character.name, "-", character.type, "-", character.life, "life points", "-", character.weapon.name, "-", character.weapon.damage, "damage points", "-", character.weapon.repair, "repair points")
             } else {
-                print("\(i).", character.name, "-", character.type,"- DEAD")
+                print("\(i).", character.name, "-", character.type,"- DEAD ☠️")
             }
         }
     }
@@ -109,6 +109,7 @@ class Player {
         return character
         
         /*
+         FIRST VERSION, BEFORE TO USE GUARD FUNCTION
          // Check that choiceSelect is an Int.
          if let choiceSelect = readLine(), let choiceInt = Int(choiceSelect) {
          // Look if this Int is well understood between 0..<team.count.

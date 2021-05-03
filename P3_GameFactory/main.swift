@@ -101,17 +101,17 @@ class Game {
     
     // The name of the winner is announced as well as the number of turns and the list of characters with their properties (life point, etc.).
     func endGame() {
-        if player1.team.count <= 0 { // if player 1 has a number of characters less than or equal to 0
+        if player2.isAlive(){
             print("\n🏆 And the winner is \(player2.playerName) in \(numberOfRounds) rounds! 🏆" // player 2 won the game
                     + "\nThe survivor(s) of your team are:")
             for i in 0..<player2.team.count { // we count the number of characters remaining
-                print("\(i).", player2.team[i].name, "-", "-", player2.team[i].life, "life points", "-", player2.team[i].weapon.name) // we list the remaining characters
+                print("\(i).", player2.team[i].name, "-",player2.team[i], "-", player2.team[i].life, "life points", "-", player2.team[i].weapon.name) // we list the remaining characters
             }
-        } else if player2.team.count <= 0 { // if player 2 has a number of characters less than or equal to 0
+        } else if player1.isAlive(){
             print("\n🏆 And the winner is \(player1.playerName) in \(numberOfRounds) rounds! 🏆" // player 1 won the game
                     + "\nThe survivor(s) of your team are:")
             for i in 0..<player1.team.count { // we count the number of characters remaining
-                print("\(i).", player1.team[i].name, "-", "-", player1.team[i].life, "life points", "-", player1.team[i].weapon.name) // we list the remaining characters
+                print("\(i).", player1.team[i].name,"-", player1.team[i].type, "-", player1.team[i].life, "life points", "-", player1.team[i].weapon.name) // we list the remaining characters
             }
         }
     }
@@ -124,8 +124,14 @@ class Game {
     
     // This is the fight phase. There are an attacker and a defender.
     func fight(attackingPlayer: Player, defendingPlayer: Player) {
+        // The chest can appear
+        let chest = Chest()
         print("\n\(attackingPlayer.playerName), choose a character for play:") // Player1 chooses his attack character
         let attacker = attackingPlayer.selectCharacter() // Constant attacker who comes looking in the character table
+        if let newWeapon = chest.chestRandom() {
+            attacker.weapon = newWeapon // The weapon contained in the chest is assigned to the chosen character
+            print("\nThe new information about this character is: \(attacker.name) - \(attacker.type) - \(attacker.life) points of life - \(attacker.weapon.name) - \(attacker.weapon.damage) points of damage - \(attacker.weapon.repair) points of repair")
+        }
         let attack = attackingPlayer.attackOrRepair()
         if attack {
             let defenser = defendingPlayer.selectCharacter()
